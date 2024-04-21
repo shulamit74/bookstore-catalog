@@ -1,0 +1,36 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: books
+      DB_USER: postgres
+      DB_PASSWORD: root
+    volumes:
+      - ./backend:/app  # Mount the local backend directory into the container
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app  # Mount the local backend directory into the container

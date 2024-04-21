@@ -1,0 +1,44 @@
+.container {
+    margin: 20px;
+    width: 350px;
+}
+.header {
+    font-weight: bold;
+    font-size: 24px;
+}
+.formRow {
+    margin: 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.formRow input {
+    width: 100%;
+}
+.formInputTitle {
+    font-weight: medium;
+    margin-bottom: 3px;
+}
+.back {
+    cursor: pointer;
+    padding:10px 20px;
+    border: 1px solid black;
+    margin-bottom: 3px;
+}
+
+.bottomIcons {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.bottomIcons button {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+}
+.trash {
+    
+    width: 20px;
+}
