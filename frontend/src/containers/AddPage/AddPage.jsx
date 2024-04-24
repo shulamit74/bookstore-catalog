@@ -22,11 +22,10 @@ const bookKeys = {
 };
 
 const AddPage = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const [book, setBook] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
-  const [loadMessage, setLoadMessage] = useState("Loading...");
+  const [loadMessage, setLoadMessage] = useState('');
 
   const addBook = async () => {
     try {
@@ -68,6 +67,7 @@ const AddPage = () => {
               <div className="formInputTitle">{label}:</div>
               {type === "select" ? (
                 <select name={key} onChange={onInputChanged}>
+                  <option value="">Select {label}</option>
                   {options.map((option) => (
                     <option key={option} value={option}>
                       {option}
@@ -86,6 +86,7 @@ const AddPage = () => {
           );
         })}
       </div>
+      <div>{loadMessage}</div>
       <div className="bottomIcons">
         <button className="back" onClick={goBack}>
           Back

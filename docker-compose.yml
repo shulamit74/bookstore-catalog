@@ -9,8 +9,18 @@ services:
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      # When the PostgresSQL container is started it will run any scripts
+      # provided in the `docker-entrypoint-initdb.d` directory
+      - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
 
   backend:
     build:
@@ -19,11 +29,10 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_NAME: books
+      DB_HOST: postgres
       DB_USER: postgres
       DB_PASSWORD: root
     volumes:
@@ -38,3 +47,5 @@ services:
     volumes:
       - ./frontend:/app  # Mount the local backend directory into the container
       - /app/node_modules
+    depends_on:
+      - backend
