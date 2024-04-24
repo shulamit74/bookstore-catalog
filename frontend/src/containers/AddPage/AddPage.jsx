@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const genres = [
@@ -29,7 +29,7 @@ const AddPage = () => {
 
   const addBook = async () => {
     try {
-      const resp = await fetch(`http://localhost:5000/books`, {
+     await fetch(`http://localhost:5000/books`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(book),

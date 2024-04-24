@@ -22,7 +22,7 @@ const BookPage = () => {
 
   useEffect(() => {
     getBook();
-  }, []);
+  });
 
   const goBack = () => {
     navigate("/");
@@ -35,7 +35,7 @@ const BookPage = () => {
         This cannot be reverted!`);
     if (resp) {
       try {
-        const resp = await fetch(`http://localhost:5000/books/${id}`, {
+         await fetch(`http://localhost:5000/books/${id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(book),

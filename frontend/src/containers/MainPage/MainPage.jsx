@@ -33,7 +33,7 @@ const MainPage = () => {
       <header className="header">
         <div>My Bookstore catalog</div>
         <button className="addButton" onClick={addBook}>
-            <img src={plusIcon} className="plus"/>
+            <img src={plusIcon} className="plus" alt="add"/>
             Add book
         </button>
       </header>
