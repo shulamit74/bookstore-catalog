@@ -12,7 +12,7 @@ There are 2 ways to run the app:
 ### Option B: Manually
  1. Clone the repo and CD into it.
  2. Start local Postgres server.
- 3. If you want to insert sample books - run manually the SQL in `database-seed.sql`
+ 3. Run manually the SQL in `database-seed.sql`
  4. Change the credentials in `backend/initDB.js` to match your DB.
  5. In `backend` folder, run: 
  `npm install` and `node index.js` to start the server.
